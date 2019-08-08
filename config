@@ -64,7 +64,7 @@ if test -n "$ngx_module_link"; then
     ngx_module_deps="$NGX_HTTP_HTML_SANITIZE_DEPS"
     ngx_module_srcs="$NGX_HTTP_HTML_SANITIZE_SRCS"
 
-    CFLAGS="$CFLAGS -std=gnu99 -g -O2 -fno-omit-frame-pointer -fno-implicit-fallthrough"
+    CFLAGS="$CFLAGS -std=gnu99 -g -O2 -fno-omit-frame-pointer -Wno-error=implicit-fallthrough"
 
     . auto/module
 
