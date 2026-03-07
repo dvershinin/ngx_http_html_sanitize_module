@@ -59,39 +59,12 @@ void* gumbo_parser_allocate(
 void gumbo_parser_deallocate(struct GumboInternalParser* parser, void* ptr);
 
 
-#ifdef __GNUC__
 #include <stdint.h>
 
 inline uint32_t
 bsr_32bit(uint32_t x) {
-  uint32_t bit;
-
-  __asm__(
-    "bsr %1, %0"
-    : "=r" (bit)
-    : "r" (x)
-  );
-
-  return bit;
+  return 31 - __builtin_clz(x);
 }
-#elif _MSC_VER
-/*
- * do not test
- */
-#include <stdint.h>
-inline
-bsr_32bit(uint32_t x) {
-  uint32_t bit;
-
-  __asm {
-    bsr eax, x
-    mov bit, eax
-  }
-
-  return bit;
-}
-
-#endif
 
 #ifdef __cplusplus
 }
